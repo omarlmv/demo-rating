@@ -1,0 +1,278 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1682802478070-1
+      author: omancilla
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: itemPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: title
+                  type: VARCHAR(255)
+            tableName: item
+  - changeSet:
+      id: 1682802478070-2
+      author: omancilla
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: reviewPK
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: comment
+                  type: VARCHAR(255)
+              - column:
+                  name: rating
+                  type: DOUBLE PRECISION
+              - column:
+                  constraints:
+                    nullable: false
+                  name: item_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_id
+                  type: BIGINT
+            tableName: review
+  - changeSet:
+      id: 1682802478070-3
+      author: omancilla
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: userPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+            tableName: user
+  - changeSet:
+      id: 1682802478070-4
+      author: omancilla
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: item_id
+            baseTableName: review
+            constraintName: FK6hb6qqehnsm7mvfgv37m66hd7
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: item
+            validate: true
+  - changeSet:
+      id: 1682802478070-5
+      author: omancilla
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: review
+            constraintName: FKiyf57dy48lyiftdrf7y87rnxi
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: user
+            validate: true
+  - changeSet:
+      id: 1
+      author: omancilla
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: username
+                  value: john_doe
+              - column:
+                  name: email
+                  value: john_doe@email.com
+              - column:
+                  name: password
+                  value: some_password
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: username
+                  value: jane_doe
+              - column:
+                  name: email
+                  value: jane_doe@email.com
+              - column:
+                  name: password
+                  value: some_password
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: item
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: title
+                  value: "Samsung Galaxy S22 Ultra"
+              - column:
+                  name: description
+                  value: "Un potente smartphone Android con características de última generación."
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: item
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: title
+                  value: "Apple iPhone 13 Pro Max"
+              - column:
+                  name: description
+                  value: "El último iPhone con tecnología avanzada y diseño premium."
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: item
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: title
+                  value: "Google Pixel 6 Pro"
+              - column:
+                  name: description
+                  value: "Un innovador smartphone con funciones impulsadas por la inteligencia artificial de Google."
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: item_id
+                  value: 1
+              - column:
+                  name: rating
+                  value: 5
+              - column:
+                  name: comment
+                  value: "El mejor teléfono Android que he usado. ¡Muy recomendable!"
+              - column:
+                  name: user_id
+                  value: 2
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: item_id
+                  value: 1
+              - column:
+                  name: rating
+                  value: 4
+              - column:
+                  name: comment
+                  value: "Excelente teléfono con una pantalla increíble, pero la duración de la batería podría ser mejor."
+              - column:
+                  name: user_id
+                  value: 2
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: item_id
+                  value: 2
+              - column:
+                  name: rating
+                  value: 5
+              - column:
+                  name: comment
+                  value: "El iPhone 13 Pro Max es un dispositivo fantástico con una cámara increíble."
+              - column:
+                  name: user_id
+                  value: 1
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: item_id
+                  value: 2
+              - column:
+                  name: rating
+                  value: 4
+              - column:
+                  name: comment
+                  value: "Me encanta el diseño y el rendimiento, pero es un poco caro."
+              - column:
+                  name: user_id
+                  value: 2
+            changeSetAuthor: omancilla
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: item_id
+                  value: 3
+              - column:
+                  name: rating
+                  value: 3
+              - column:
+                  name: comment
+                  value: "El Pixel 6 Pro tiene algunas características únicas, pero no es tan pulido como otros buques insignia."
+              - column:
+                  name: user_id
+                  value: 1
+            changeSetAuthor: omancilla
+
+
+

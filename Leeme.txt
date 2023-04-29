@@ -1,0 +1,4 @@
+-- La Demo fue realizada con el IDE Intellij
+-- Servicio para consumilar rating en local
+
+curl --location 'localhost:8080/titles/?rating=6'
